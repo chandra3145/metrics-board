@@ -34,7 +34,7 @@ app.get("/config", (req, res) => {
     }
     res.json({ updated: serviceCount });
   });
-  
+
 app.get("/metrics/stream", (req, res) => {
   res.setHeader("Content-Type", "text/event-stream");
   res.setHeader("Cache-Control", "no-cache");
@@ -48,7 +48,10 @@ app.get("/metrics/stream", (req, res) => {
     res.write(`data: ${JSON.stringify(list)}\n\n`);
   };
 
-  setInterval(sendData, 1000);
+  const interval = setInterval(sendData, 1000);
+  req.on("close", () => {
+    clearInterval(interval);
+  });
 
 });
 
