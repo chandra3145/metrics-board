@@ -2,4 +2,19 @@
     --status-green: #4caf50;
     --status-yellow: #ffcc33;
     --status-red: #ff4d4d;
+
+    --color-bg: #ffffff;
+    --color-border-green: #4caf50;
+    --color-border-yellow: #ffcc33;
+    --color-border-red: #ff4d4d;
+  
+    --color-text-heading: #111;
+    --color-text-normal: #333;
+  
+    --radius-md: 6px;
+    --radius-lg: 10px;
+  
+    --spacing-sm: 8px;
+    --spacing-md: 14px;
+    --spacing-lg: 20px;
 }
