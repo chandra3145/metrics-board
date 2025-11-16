@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ServiceCard from "./components/ServiceCard";
 import './styles/tokens.css';
+import DetailModal from "./components/DetailModal";
 import "./App.css";
 
 type Metric = {
@@ -13,6 +14,7 @@ type Metric = {
 function App() {
   const [services, setServices] = useState<Metric[]>([]);
   const sourceRef = useRef<EventSource | null>(null);
+  const [selected, setSelected] = useState<Metric | null>(null);
 
   useEffect(() => {
     const src = new EventSource("http://localhost:4000/metrics/stream");
@@ -45,9 +47,14 @@ function App() {
           <ServiceCard
             key={svc.serviceName}
             data={svc}
+            onClick={() => setSelected(svc)}
           />
         ))}
       </div>
+
+      {selected && (
+        <DetailModal service={selected} onClose={() => setSelected(null)} />
+      )}
     </div>
   );
 }

@@ -1,0 +1,30 @@
+.modal-bg {
+    position: fixed;
+    inset: 0;
+    background: var(--modal-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal {
+    background: var(--color-surface);
+    padding: var(--space-lg);
+    width: 420px;
+    border-radius: var(--modal-radius);
+  }
+  
+  .modal h2 {
+    margin-bottom: var(--space-md);
+    color: var(--color-text-heading);
+  }
+  
+  .close-btn {
+    margin-top: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--status-red);
+    color: #fff;
+    border: none;
+    border-radius: var(--card-radius);
+    cursor: pointer;
+  }
