@@ -1,4 +1,12 @@
 import React from "react";
+import "./ServiceCard.css";
+
+
+const getBorderColor = (cpu: number, errorRate: number) => {
+    if (cpu > 80 || errorRate > 5) return "var(--status-red)";
+    if (cpu > 60) return "var(--status-yellow)";
+    return "var(--status-green)";
+  };
 
 function ServiceCard({ data, onClick }: any) {
   const { serviceName, cpu, memory, errorRate } = data;
@@ -6,6 +14,7 @@ function ServiceCard({ data, onClick }: any) {
   return (
     <div
       className="card"
+      style={{ borderColor: getBorderColor(cpu, errorRate) }}
       onClick={onClick}
     >
       <h3>{serviceName}</h3>
@@ -16,4 +25,4 @@ function ServiceCard({ data, onClick }: any) {
   );
 }
 
-export default ServiceCard;
+export default React.memo(ServiceCard);
