@@ -23,6 +23,18 @@ function createMetrics(name: string): Metric {
   };
 }
 
+app.get("/config", (req, res) => {
+    res.json({ services: serviceCount });
+  });
+  
+  app.get("/config/update", (req, res) => {
+    const n = Number(req.query.count);
+    if (!isNaN(n) && n > 0 && n <= 200) {
+      serviceCount = n;
+    }
+    res.json({ updated: serviceCount });
+  });
+  
 app.get("/metrics/stream", (req, res) => {
   res.setHeader("Content-Type", "text/event-stream");
   res.setHeader("Cache-Control", "no-cache");
