@@ -56,6 +56,29 @@ It opens at:
 ```
 http://localhost:3000
 ```
+
+That's basically it for local setup.
+
+---
+
+## Running with Docker
+
+If you want to build and run everything in one container:
+
+### Build image
+```
+docker build -t realtime-metrics-board .
+```
+
+### Run container
+```
+docker run -p 4000:4000 realtime-metrics-board
+```
+
+Open the browser at:
+```
+http://localhost:4000
+```
 ---
 
 ## API Endpoints
@@ -63,6 +86,18 @@ http://localhost:3000
 - **GET /config** → returns how many services are running  
 - **GET /config/update?count=10** → update service count  
 - **GET /metrics/stream** → SSE stream with live metrics  
+
+---
+
+## Small Note on Scalability
+
+If services grow to like 1000+, few things can help:
+- avoid sending all data every second, maybe send smaller chunks  
+- don't render all cards at once on UI, use some list loading  
+- charts should only load when user opens modal  
+This project is simple so not doing all that now.
+
+(This is just a quick idea area, not fully detailed.)
 
 ---
 

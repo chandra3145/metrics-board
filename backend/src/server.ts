@@ -24,16 +24,16 @@ function createMetrics(name: string): Metric {
 }
 
 app.get("/config", (req, res) => {
-    res.json({ services: serviceCount });
-  });
-  
-  app.get("/config/update", (req, res) => {
-    const n = Number(req.query.count);
-    if (!isNaN(n) && n > 0 && n <= 200) {
-      serviceCount = n;
-    }
-    res.json({ updated: serviceCount });
-  });
+  res.json({ services: serviceCount });
+});
+
+app.get("/config/update", (req, res) => {
+  const n = Number(req.query.count);
+  if (!isNaN(n) && n > 0 && n <= 200) {
+    serviceCount = n;
+  }
+  res.json({ updated: serviceCount });
+});
 
 app.get("/metrics/stream", (req, res) => {
   res.setHeader("Content-Type", "text/event-stream");
@@ -52,7 +52,12 @@ app.get("/metrics/stream", (req, res) => {
   req.on("close", () => {
     clearInterval(interval);
   });
+});
 
+app.use(express.static(path.join(__dirname, "../../frontend/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../../frontend/build/index.html"));
 });
 
 const PORT = 4000;
