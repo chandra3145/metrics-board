@@ -12,6 +12,62 @@ The backend sends fake service metrics every second and the UI shows them live i
 - Streams data using SSE  
 - Has a config endpoint to change number of services  
 
-
 ### Frontend
 - React (CRA) with TypeScript  
+- Shows each service in a card with color status  
+- Modal opens on click and shows simple line chart  
+- Uses basic design tokens in CSS for colors, spacing etc.
+
+---
+
+
+## Installation / Project Setup
+
+Before running anything, make sure you have Node 18+ installed.
+
+### 1. Install Backend
+```
+cd backend
+npm install
+```
+
+### 2. Install Frontend
+```
+cd frontend
+npm install
+```
+
+### 3. Run Backend
+```
+cd backend
+npm run dev
+```
+It starts on:
+```
+http://localhost:4000
+```
+
+### 4. Run Frontend
+```
+cd frontend
+npm start
+```
+It opens at:
+```
+http://localhost:3000
+```
+---
+
+## API Endpoints
+
+- **GET /config** → returns how many services are running  
+- **GET /config/update?count=10** → update service count  
+- **GET /metrics/stream** → SSE stream with live metrics  
+
+---
+
+## Summary
+
+Just a basic setup to show how live metrics can be streamed and displayed.  
+Kept things simple so its easy to read and run.
+
